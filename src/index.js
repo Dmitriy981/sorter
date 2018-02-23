@@ -1,30 +1,46 @@
+const REVERSE_COMPARATOR = (a, b) => a - b;
+
 class Sorter {
+    
   constructor() {
-    // your implementation
+      this.sorterArray = [];
+      this.compareFunction = REVERSE_COMPARATOR;
   }
 
   add(element) {
-    // your implementation
+        this.sorterArray.push(element);
   }
 
   at(index) {
-    // your implementation
+      return this.sorterArray[index];
   }
 
   get length() {
-    // your implementation
+    return this.sorterArray.length;
   }
 
   toArray() {
-    // your implementation
+    return this.sorterArray;
   }
 
   sort(indices) {
-    // your implementation
+      indices.sort(REVERSE_COMPARATOR);
+      var sortingValues = [];
+      for (var i = 0; i < this.sorterArray.length; i++) {
+        if (indices.includes(i)) {
+            sortingValues.push(this.sorterArray[i]);
+        }
+      }
+      
+      sortingValues.sort(this.compareFunction);
+      
+      for (var i = 0; i < indices.length; i++) {
+            this.sorterArray[indices[i]] = sortingValues[i];
+      }
   }
 
   setComparator(compareFunction) {
-    // your implementation
+      this.compareFunction = compareFunction;
   }
 }
 
